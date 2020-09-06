@@ -2,11 +2,13 @@ package steps;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseOptions;
 import org.testng.Assert;
 import utilities.RestAssuredExtension;
 
+import javax.print.DocFlavor;
 import java.util.List;
 
 public class StepDefinition {
@@ -33,5 +35,12 @@ public class StepDefinition {
         List<String> jsonResponse = response.getBody().jsonPath().getList("$");
         String actualUsers = Integer.toString(jsonResponse.size());
         Assert.assertEquals(actualUsers, expectedUsers, "Correct number of users returned");
+    }
+
+    @Then("I should see property {string} with {string}")
+    public void iShouldSeePropertyReturn(String property, String expectedValue) {
+        JsonPath jsonResponse = response.getBody().jsonPath();
+        String actualValue = jsonResponse.get(property).toString();
+        Assert.assertEquals(actualValue, expectedValue, "Correct id returned");
     }
 }

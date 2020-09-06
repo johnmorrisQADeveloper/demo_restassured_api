@@ -31,6 +31,12 @@ Feature:
     Then I should see property "message" to be "please enter a valid number"
     And I should get "404" status code
 ```
+2. Invalid /city/{city}/users city or city with no users, returns an empty array []
+```
+curl --location --request GET 'http://bpdts-test-app-v2.herokuapp.com/city/$a/users'
+[]
+```
+This should return a friendly message indicating there are no users in a particular location.
 
 # Run all feature files via terminal
 ```

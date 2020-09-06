@@ -43,4 +43,10 @@ public class StepDefinition {
         String actualValue = jsonResponse.get(property).toString();
         Assert.assertEquals(actualValue, expectedValue, "Correct id returned");
     }
+
+    @Then("I should get {string} status code")
+    public void iShouldGetStatusCode(String statusCode) {
+        String actualStatusCode = String.valueOf(response.getStatusCode());
+        Assert.assertEquals(actualStatusCode, statusCode, "Correct id returned");
+    }
 }

@@ -1,5 +1,6 @@
 package steps;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.restassured.path.json.JsonPath;
@@ -48,5 +49,16 @@ public class StepDefinition {
     public void iShouldGetStatusCode(String statusCode) {
         String actualStatusCode = String.valueOf(response.getStatusCode());
         Assert.assertEquals(actualStatusCode, statusCode, "Correct id returned");
+    }
+
+    @Then("I should see below properties")
+    public void iShouldSeeBelowProperties(DataTable table) {
+        JsonPath jsonResponse = response.getBody().jsonPath();
+        List<List<String>> rows = table.asLists(String.class);
+        for (List<String> columns : rows) {
+            String actualValue = jsonResponse.get(columns.get(0)).toString();
+            Assert.assertEquals(actualValue, columns.get(1).toString(), "Correct id returned");
+            System.out.println(columns.get(0)+ " " + columns.get(1));
+        }
     }
 }

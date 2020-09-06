@@ -13,6 +13,25 @@ the automation only covers GET method.
 | /city/cityname/users  | users within city | users within city   |
 | /users                | all users         | all users           |
 
+# Test Observation
+1. Invalid user/{id} - Since id are integers, it would be good for API to return 
+something like please enter a valid number instead of the output below.
+```
+Actual
+curl --location --request GET 'http://bpdts-test-app-v2.herokuapp.com/user/we'
+{"message": "Id we doesn't exist. You have requested this URI [/user/we] but did you mean /user/<string:id> or /users ?"}
+```
+On the above premise I created feature file
+```
+Feature:
+  Verify userid endpoint with invalid entries
+
+  Scenario: Verify /user/1001 endpoint returns no user
+    When I perform GET operation for "/user/we"
+    Then I should see property "message" to be "please enter a valid number"
+    And I should get "404" status code
+```
+
 # Run all feature files via terminal
 ```
 mvn clean install

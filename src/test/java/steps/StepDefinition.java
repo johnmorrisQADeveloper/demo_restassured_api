@@ -8,8 +8,6 @@ import io.restassured.response.Response;
 import io.restassured.response.ResponseOptions;
 import org.testng.Assert;
 import utilities.RestAssuredExtension;
-
-import javax.print.DocFlavor;
 import java.util.List;
 
 public class StepDefinition {
@@ -58,7 +56,6 @@ public class StepDefinition {
         for (List<String> columns : rows) {
             String actualValue = jsonResponse.get(columns.get(0)).toString();
             Assert.assertEquals(actualValue, columns.get(1).toString(), "Correct id returned");
-            System.out.println(columns.get(0)+ " " + columns.get(1));
         }
     }
 }

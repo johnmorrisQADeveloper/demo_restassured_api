@@ -13,4 +13,4 @@ jobs:
         with:
           java-version: '14.0.2'
       - name: Run all feature files
-        run: mvn exec:java -Dexec.classpathScope=test -Dexec.mainClass=io.cucumber.core.cli.Main -Dexec.args="src/test/java/features --glue steps"
+        run: mvn clean install && mvn exec:java -Dexec.classpathScope=test -Dexec.mainClass=io.cucumber.core.cli.Main -Dexec.args="src/test/java/features --glue steps"

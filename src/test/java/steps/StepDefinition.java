@@ -7,6 +7,8 @@ import io.restassured.response.ResponseOptions;
 import org.testng.Assert;
 import utilities.RestAssuredExtension;
 
+import java.util.List;
+
 public class StepDefinition {
     public static ResponseOptions<Response> response;
 
@@ -24,5 +26,12 @@ public class StepDefinition {
     public void iShouldSeeTextValueOfObject(String arg0) {
         String expected = "Create a short automated test for this API. Check that the data returned by the API is valid, and that ensure that each valid operation can be successfully called for each endpoint. Once you've built the tests, push the answer to Github or Gitlab, and send us a link. ";
         Assert.assertEquals(response.getBody().jsonPath().get(arg0), expected, "Correct todo text returned");
+    }
+
+    @Then("I should see {string} users")
+    public void iShouldSeeUsers(String expectedUsers) {
+        List<String> jsonResponse = response.getBody().jsonPath().getList("$");
+        String actualUsers = Integer.toString(jsonResponse.size());
+        Assert.assertEquals(actualUsers, expectedUsers, "Correct number of users returned");
     }
 }

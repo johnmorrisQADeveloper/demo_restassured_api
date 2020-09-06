@@ -21,7 +21,7 @@ Actual
 curl --location --request GET 'http://bpdts-test-app-v2.herokuapp.com/user/we'
 {"message": "Id we doesn't exist. You have requested this URI [/user/we] but did you mean /user/<string:id> or /users ?"}
 ```
-On the above premise I created feature file
+On the above premise
 ```
 Feature:
   Verify userid endpoint with invalid entries

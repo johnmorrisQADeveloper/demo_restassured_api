@@ -40,13 +40,13 @@ public class StepDefinition {
     public void iShouldSeePropertyReturn(String property, String expectedValue) {
         JsonPath jsonResponse = response.getBody().jsonPath();
         String actualValue = jsonResponse.get(property).toString();
-        Assert.assertEquals(actualValue, expectedValue, "Correct id returned");
+        Assert.assertEquals(actualValue, expectedValue, "Correct property and value returned");
     }
 
     @Then("I should get {string} status code")
     public void iShouldGetStatusCode(String statusCode) {
         String actualStatusCode = String.valueOf(response.getStatusCode());
-        Assert.assertEquals(actualStatusCode, statusCode, "Correct id returned");
+        Assert.assertEquals(actualStatusCode, statusCode, "Correct status returned");
     }
 
     @Then("I should see below properties")
@@ -55,7 +55,14 @@ public class StepDefinition {
         List<List<String>> rows = table.asLists(String.class);
         for (List<String> columns : rows) {
             String actualValue = jsonResponse.get(columns.get(0)).toString();
-            Assert.assertEquals(actualValue, columns.get(1).toString(), "Correct id returned");
+            Assert.assertEquals(actualValue, columns.get(1).toString(), "Correct properties returned");
         }
+    }
+
+    @Then("I should see property {string} with text:")
+    public void iShouldSeePropertyWithText(String property, List<String> multiline) {
+        JsonPath jsonResponse = response.getBody().jsonPath();
+        String actualValue = jsonResponse.get(property).toString();
+        Assert.assertEquals(actualValue, multiline.get(0), "Correct text returned");
     }
 }

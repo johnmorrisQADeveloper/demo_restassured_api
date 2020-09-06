@@ -1,11 +1,7 @@
 Feature:
   Verify swagger.json endpoint
 
-  Background:
+  Scenario: Verify correct swagger definitions
     Given I perform GET operation for "/swagger.json"
-
-    Scenario: Verify correct swagger version
-      Then I should see "swagger" version to be "2.0"
-
-    Scenario: Verify correct basePath
-      Then I should see "basePath" version to be "/"
+      Then I should see property "swagger" to be "2.0"
+      Then I should see property "basePath" to be "/"

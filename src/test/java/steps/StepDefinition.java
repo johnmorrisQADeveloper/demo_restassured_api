@@ -37,7 +37,7 @@ public class StepDefinition {
         Assert.assertEquals(actualUsers, expectedUsers, "Correct number of users returned");
     }
 
-    @Then("I should see property {string} with {string}")
+    @Then("I should see property {string} to be {string}")
     public void iShouldSeePropertyReturn(String property, String expectedValue) {
         JsonPath jsonResponse = response.getBody().jsonPath();
         String actualValue = jsonResponse.get(property).toString();

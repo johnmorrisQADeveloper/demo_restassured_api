@@ -7,7 +7,7 @@ import io.restassured.response.ResponseOptions;
 import org.testng.Assert;
 import utilities.RestAssuredExtension;
 
-public class SwaggerStepDefinition {
+public class StepDefinition {
     public static ResponseOptions<Response> response;
 
     @Given("I perform GET operation for {string}")

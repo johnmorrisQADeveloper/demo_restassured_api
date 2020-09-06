@@ -1,5 +1,5 @@
 Feature:
-  Verify swagger definition endpoint
+  Verify swagger.json endpoint
 
   Background:
     Given I perform GET operation for "/swagger.json"
